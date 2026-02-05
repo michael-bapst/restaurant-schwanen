@@ -128,69 +128,156 @@
 </div>
         </header>
         <main class="l-m cf">
-            <div class="sw cf">
-	<div class="sw-c cf"><section class="s s-hm s-hm-hidden wnd-h-hidden cf sc-w   hn-default"></section><section class="s s-basic cf sc-w   wnd-w-wide wnd-s-normal wnd-h-auto">
-	<div class="s-w cf">
-		<div class="s-o s-fs cf">
-			<div class="s-bg cf">
-				<div class="s-bg-l">
+            <!-- Speisekarte CSS -->
+            <style>
+                #speisekarte-wrapper { background: #f5f5f5; padding: 20px 0; }
+                #speisekarte-container { display: flex; justify-content: center; align-items: flex-start; width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; gap: 30px; font-family: 'Georgia', serif; }
+                #speisekarte-toc { width: 280px; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-radius: 8px; padding: 20px; position: sticky; top: 100px; flex-shrink: 0; }
+                .sk-toc-header { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #6b5c4c; display: flex; justify-content: space-between; align-items: center; }
+                .sk-toc-header h2 { font-size: 1.1em; font-weight: 600; color: #6b5c4c; margin: 0; }
+                .sk-close-toc { display: none; width: 36px; height: 36px; background: transparent; border: none; font-size: 24px; color: #666; cursor: pointer; border-radius: 4px; }
+                #speisekarte-toc-list { list-style: none; padding: 0; margin: 0; }
+                #speisekarte-toc-list li { margin-bottom: 4px; }
+                #speisekarte-toc-list a { display: flex; justify-content: space-between; color: #333; text-decoration: none; font-size: 0.95em; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; border-left: 3px solid transparent; }
+                #speisekarte-toc-list a:hover { background: #f8f6f4; color: #6b5c4c; border-left-color: #6b5c4c; }
+                #speisekarte-toc-list a.active { background: #6b5c4c; color: white; }
+                .sk-toc-title { flex: 1; margin-right: 10px; }
+                .sk-toc-page { color: #999; font-size: 0.85em; }
+                #speisekarte-toc-list a.active .sk-toc-page { color: rgba(255,255,255,0.7); }
+                #speisekarte-book { position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.25); background: #fff; border-radius: 4px; overflow: hidden; cursor: pointer; width: 500px; height: 707px; }
+                .sk-page { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: none; }
+                .sk-page.active { display: block; }
+                .sk-page img { width: 100%; height: 100%; object-fit: contain; }
+                .sk-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #6b5c4c; color: white; border: none; width: 45px; height: 45px; font-size: 1.5em; cursor: pointer; border-radius: 50%; z-index: 10; transition: all 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+                .sk-nav-btn:hover { background: #5a4d3f; transform: translateY(-50%) scale(1.1); }
+                .sk-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+                .sk-nav-btn:disabled:hover { transform: translateY(-50%); }
+                #sk-prev-btn { left: -60px; }
+                #sk-next-btn { right: -60px; }
+                .sk-hamburger { display: none; position: fixed; top: 80px; left: 15px; width: 44px; height: 44px; background: rgba(255,255,255,0.95); border: none; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer; z-index: 1001; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+                .sk-hamburger span { width: 22px; height: 2px; background: #6b5c4c; border-radius: 2px; }
+                .sk-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s; }
+                .sk-overlay.active { opacity: 1; visibility: visible; }
+                .sk-bottom-nav { display: none; position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; background: #fff; border-top: 1px solid #ddd; justify-content: space-between; z-index: 998; box-shadow: 0 -2px 8px rgba(0,0,0,0.1); }
+                .sk-bottom-btn { flex: 1; height: 100%; background: transparent; border: none; color: #6b5c4c; font-size: 1em; font-weight: 500; cursor: pointer; font-family: Georgia, serif; }
+                .sk-bottom-btn:not(:last-child) { border-right: 1px solid #eee; }
+                .sk-bottom-btn:disabled { opacity: 0.4; color: #999; }
+                .sk-book-wrapper { position: relative; }
+                @media (max-width: 900px) {
+                    #speisekarte-container { flex-direction: column; padding: 0; gap: 0; }
+                    .sk-hamburger { display: flex; }
+                    .sk-overlay { display: block; }
+                    #speisekarte-toc { position: fixed; top: 0; left: 0; width: 85%; max-width: 320px; height: 100vh; border-radius: 0; z-index: 1000; transform: translateX(-100%); transition: transform 0.3s; padding: 0; }
+                    #speisekarte-toc.sidebar-open { transform: translateX(0); }
+                    .sk-toc-header { padding: 20px; margin-bottom: 0; border-bottom: 1px solid #ddd; }
+                    .sk-close-toc { display: flex; align-items: center; justify-content: center; }
+                    #speisekarte-toc-list { padding: 15px 20px; overflow-y: auto; max-height: calc(100vh - 70px); }
+                    #speisekarte-book { width: 100% !important; height: calc(100vh - 180px) !important; border-radius: 0; box-shadow: none; }
+                    .sk-nav-btn { display: none !important; }
+                    .sk-bottom-nav { display: flex; }
+                    .sk-book-wrapper { width: 100%; }
+                }
+            </style>
+
+            <div id="speisekarte-wrapper">
+                <!-- Hamburger Button (Mobile) -->
+                <button id="sk-hamburger" class="sk-hamburger" aria-label="Menü öffnen">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <!-- Overlay (Mobile) -->
+                <div id="sk-overlay" class="sk-overlay"></div>
+                
+                <div id="speisekarte-container">
+                    <!-- Table of Contents -->
+                    <nav id="speisekarte-toc">
+                        <div class="sk-toc-header">
+                            <h2>Speisekarte</h2>
+                            <button id="sk-close-toc" class="sk-close-toc" aria-label="Schließen">×</button>
+                        </div>
+                        <ul id="speisekarte-toc-list">
+                            <li><a href="#" data-page="1" class="active"><span class="sk-toc-title">Titelblatt</span><span class="sk-toc-page">1</span></a></li>
+                            <li><a href="#" data-page="2"><span class="sk-toc-title">Getränkekarte</span><span class="sk-toc-page">2</span></a></li>
+                            <li><a href="#" data-page="3"><span class="sk-toc-title">Us dr Schwanechuchi</span><span class="sk-toc-page">3</span></a></li>
+                            <li><a href="#" data-page="4"><span class="sk-toc-title">Weinkarte</span><span class="sk-toc-page">4</span></a></li>
+                        </ul>
+                    </nav>
                     
-					
+                    <!-- Book Display -->
+                    <div class="sk-book-wrapper">
+                        <div id="speisekarte-book">
+                            <div class="sk-page active" data-page="1"><img src="images/speisekarte-1.jpg" alt="Menü Titelblatt"></div>
+                            <div class="sk-page" data-page="2"><img src="images/speisekarte-2.jpg" alt="Getränkekarte"></div>
+                            <div class="sk-page" data-page="3"><img src="images/speisekarte-3.jpg" alt="Us dr Schwanechuchi"></div>
+                            <div class="sk-page" data-page="4"><img src="images/speisekarte-4.jpg" alt="Weinkarte"></div>
+                        </div>
+                        <button id="sk-prev-btn" class="sk-nav-btn" disabled>‹</button>
+                        <button id="sk-next-btn" class="sk-nav-btn">›</button>
 				</div>
 			</div>
-			<div class="s-c s-fs cf">
-				<div class="ez cf">
-	<div class="ez-c"><div class="b b-text cf">
-	<div class="b-c b-text-c b-s b-s-t60 b-s-b60 b-cs cf"><h1 class="wnd-align-center"><strong>Menü</strong></h1>
-
-<p><br></p>
-</div>
-</div><div class="cw cf">
-	<div class="cw-c cf"><div class="c cf" style="width:50%;">
-	<div class="c-c cf"><div class="b b-s b-s-t150 b-s-b150 b-btn b-btn-file b-btn-i-left b-btn-1">
-	<div class="b-btn-c">
-		<a class="b-btn-l" href="Getraenke_Speisekarte.pdf" target="_blank">
-			<span class="b-btn-t">GETRÄNKE- SPEISEKARTE.pdf</span>
-		</a>
+                
+                <!-- Bottom Navigation (Mobile) -->
+                <div id="sk-bottom-nav" class="sk-bottom-nav">
+                    <button id="sk-bottom-prev" class="sk-bottom-btn" disabled>← Zurück</button>
+                    <button id="sk-bottom-next" class="sk-bottom-btn">Weiter →</button>
 	</div>
-</div></div>
-</div><div class="c cf" style="width:50%;">
-	<div class="c-c cf"><div class="b b-s b-s-t150 b-s-b150 b-btn b-btn-file b-btn-i-left b-btn-1">
-	<div class="b-btn-c">
-		<a class="b-btn-l" href="Weinkarte.pdf" target="_blank">
-			<span class="b-btn-t">WEINKARTE.pdf</span>
-		</a>
-	</div>
-</div></div>
-</div></div>
-</div><div class="b-img b-img-default b b-s cf wnd-orientation-portrait wnd-type-image img-s-n" style="margin-left:23.04%;margin-right:23.04%;" id="wnd_ImageBlock_35651752668213623">
-	<div class="b-img-w">
-		<div class="b-img-c" style="padding-bottom:113.58%;text-align:center;">
-            <picture><source type="image/webp" srcset="images/Getraenke-1.webp 396w, images/Getraenke-1.webp 616w, images/Getraenke-1.webp 788w" sizes="100vw" ><img id="wnd_ImageBlock_35651752668213623_img" src="images/Getraenke-5.png" alt="" width="788" height="895" loading="lazy" style="top:0%;left:0%;width:100%;height:100%;position:absolute;" ></picture>
 			</div>
 		
-	</div>
-</div><div class="b-img b-img-default b b-s cf wnd-orientation-portrait wnd-type-image img-s-n" style="margin-left:24.8%;margin-right:24.8%;" id="wnd_ImageBlock_59301752668258827">
-	<div class="b-img-w">
-		<div class="b-img-c" style="padding-bottom:113.26%;text-align:center;">
-            <picture><source type="image/webp" srcset="images/Menu.webp 397w, images/Menu.webp 618w, images/Menu.webp 792w" sizes="100vw" ><img id="wnd_ImageBlock_59301752668258827_img" src="images/Menu.png" alt="" width="792" height="897" loading="lazy" style="top:0%;left:0%;width:100%;height:100%;position:absolute;" ></picture>
-			</div>
-		
-	</div>
-</div><div class="b-img b-img-default b b-s cf wnd-orientation-portrait wnd-type-image img-s-n" style="margin-left:26.96%;margin-right:26.96%;" id="wnd_ImageBlock_701752668274983">
-	<div class="b-img-w">
-		<div class="b-img-c" style="padding-bottom:120.79%;text-align:center;">
-            <picture><source type="image/webp" srcset="images/Weinkarte.webp 373w, images/Weinkarte.webp 580w, images/Weinkarte.webp 712w" sizes="100vw" ><img id="wnd_ImageBlock_701752668274983_img" src="images/Weinkarte.png" alt="" width="712" height="860" loading="lazy" style="top:0%;left:0%;width:100%;height:100%;position:absolute;" ></picture>
-			</div>
-		
-	</div>
-</div></div>
-</div>
-			</div>
-		</div>
-	</div>
-</section></div>
-</div>
+            <!-- Speisekarte JS -->
+            <script>
+            (function() {
+                const TOTAL = 4;
+                let current = 0;
+                const pages = document.querySelectorAll('.sk-page');
+                const tocLinks = document.querySelectorAll('#speisekarte-toc-list a');
+                const prevBtn = document.getElementById('sk-prev-btn');
+                const nextBtn = document.getElementById('sk-next-btn');
+                const bottomPrev = document.getElementById('sk-bottom-prev');
+                const bottomNext = document.getElementById('sk-bottom-next');
+                const hamburger = document.getElementById('sk-hamburger');
+                const closeToc = document.getElementById('sk-close-toc');
+                const toc = document.getElementById('speisekarte-toc');
+                const overlay = document.getElementById('sk-overlay');
+                
+                function showPage(idx) {
+                    if (idx < 0 || idx >= TOTAL) return;
+                    current = idx;
+                    pages.forEach((p, i) => p.classList.toggle('active', i === idx));
+                    tocLinks.forEach((a, i) => a.classList.toggle('active', i === idx));
+                    prevBtn.disabled = bottomPrev.disabled = idx === 0;
+                    nextBtn.disabled = bottomNext.disabled = idx === TOTAL - 1;
+                }
+                
+                function openSidebar() { toc.classList.add('sidebar-open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+                function closeSidebar() { toc.classList.remove('sidebar-open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+                
+                prevBtn.onclick = bottomPrev.onclick = () => showPage(current - 1);
+                nextBtn.onclick = bottomNext.onclick = () => showPage(current + 1);
+                hamburger.onclick = openSidebar;
+                closeToc.onclick = overlay.onclick = closeSidebar;
+                
+                tocLinks.forEach((a, i) => a.onclick = e => { e.preventDefault(); showPage(i); if (window.innerWidth <= 900) setTimeout(closeSidebar, 200); });
+                
+                document.getElementById('speisekarte-book').onclick = e => {
+                    if (window.innerWidth > 900) {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        e.clientX - rect.left < rect.width / 2 ? showPage(current - 1) : showPage(current + 1);
+                    }
+                };
+                
+                document.addEventListener('keydown', e => {
+                    if (e.key === 'ArrowLeft') showPage(current - 1);
+                    if (e.key === 'ArrowRight') showPage(current + 1);
+                });
+                
+                let touchX = 0;
+                document.getElementById('speisekarte-book').addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive: true});
+                document.getElementById('speisekarte-book').addEventListener('touchend', e => {
+                    const diff = touchX - e.changedTouches[0].clientX;
+                    if (Math.abs(diff) > 50) diff > 0 ? showPage(current + 1) : showPage(current - 1);
+                }, {passive: true});
+            })();
+            </script>
         </main>
         <footer class="l-f cf">
             <div class="sw cf">
