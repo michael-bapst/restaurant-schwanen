@@ -46,13 +46,13 @@
         </div>
         <header class="l-h cf">
             <div class="sw cf">
-	<div class="sw-c cf"><section data-space="true" class="s s-hn s-hn-default wnd-mt-classic wnd-na-c logo-classic sc-ac  sc-a wnd-w-wide wnd-nh-m hm-hidden  wnd-nav-sticky menu-default-underline-grow">
+	<div class="sw-c cf"><section data-space="true" class="s s-hn s-hn-default wnd-mt-classic wnd-na-c logo-classic sc-m wnd-background-image wnd-w-wide wnd-nh-m hm-hidden wnd-nav-sticky menu-default-underline-grow">
 	<div class="s-w">
 		<div class="s-o">
 
 			<div class="s-bg">
-                <div class="s-bg-l">
-                    
+                <div class="s-bg-l wnd-background-image fx-none bgpos-center-center bgatt-scroll">
+                    <picture><source type="image/webp" srcset="images/HinterGrund-Schwanen.webp 700w, images/HinterGrund-Schwanen.webp 1920w, images/HinterGrund-Schwanen.webp 2x" sizes="100vw" ><img src="images/HinterGrund-Schwanen.jpeg" width="1920" height="1040" alt="" ></picture>
                     
                 </div>
 			</div>
@@ -147,7 +147,7 @@
                 #speisekarte-book { position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.25); background: #fff; border-radius: 4px; overflow: hidden; cursor: pointer; width: 500px; height: 707px; }
                 .sk-page { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: none; }
                 .sk-page.active { display: block; }
-                .sk-page img { width: 100%; height: 100%; object-fit: contain; }
+                .sk-page img { width: 100%; height: 100%; object-fit: cover; display: block; }
                 .sk-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #6b5c4c; color: white; border: none; width: 45px; height: 45px; font-size: 1.5em; cursor: pointer; border-radius: 50%; z-index: 10; transition: all 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
                 .sk-nav-btn:hover { background: #5a4d3f; transform: translateY(-50%) scale(1.1); }
                 .sk-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
@@ -197,9 +197,11 @@
                         </div>
                         <ul id="speisekarte-toc-list">
                             <li><a href="#" data-page="1" class="active"><span class="sk-toc-title">Titelblatt</span><span class="sk-toc-page">1</span></a></li>
-                            <li><a href="#" data-page="2"><span class="sk-toc-title">Getränkekarte</span><span class="sk-toc-page">2</span></a></li>
-                            <li><a href="#" data-page="3"><span class="sk-toc-title">Us dr Schwanechuchi</span><span class="sk-toc-page">3</span></a></li>
-                            <li><a href="#" data-page="4"><span class="sk-toc-title">Weinkarte</span><span class="sk-toc-page">4</span></a></li>
+                            <li><a href="#" data-page="2"><span class="sk-toc-title">Getränkekarte 1</span><span class="sk-toc-page">2</span></a></li>
+                            <li><a href="#" data-page="3"><span class="sk-toc-title">Getränkekarte 2</span><span class="sk-toc-page">3</span></a></li>
+                            <li><a href="#" data-page="4"><span class="sk-toc-title">Us dr Schwanechuchi</span><span class="sk-toc-page">4</span></a></li>
+                            <li><a href="#" data-page="5"><span class="sk-toc-title">Flaschenweine</span><span class="sk-toc-page">5</span></a></li>
+                            <li><a href="#" data-page="6"><span class="sk-toc-title">Offenweine</span><span class="sk-toc-page">6</span></a></li>
                         </ul>
                     </nav>
                     
@@ -207,9 +209,11 @@
                     <div class="sk-book-wrapper">
                         <div id="speisekarte-book">
                             <div class="sk-page active" data-page="1"><img src="images/speisekarte-1.png" alt="Menü Titelblatt"></div>
-                            <div class="sk-page" data-page="2"><img src="images/speisekarte-2.jpg" alt="Getränkekarte"></div>
-                            <div class="sk-page" data-page="3"><img src="images/speisekarte-3.jpg" alt="Us dr Schwanechuchi"></div>
-                            <div class="sk-page" data-page="4"><img src="images/speisekarte-4.jpg" alt="Weinkarte"></div>
+                            <div class="sk-page" data-page="2"><img src="images/speisekarte-2.png" alt="Getränkekarte 1"></div>
+                            <div class="sk-page" data-page="3"><img src="images/speisekarte-3.png" alt="Getränkekarte 2"></div>
+                            <div class="sk-page" data-page="4"><img src="images/speisekarte-4.png" alt="Us dr Schwanechuchi"></div>
+                            <div class="sk-page" data-page="5"><img src="images/speisekarte-5.png" alt="Flaschenweine"></div>
+                            <div class="sk-page" data-page="6"><img src="images/speisekarte-6.png" alt="Offenweine"></div>
                         </div>
                         <button id="sk-prev-btn" class="sk-nav-btn" disabled>‹</button>
                         <button id="sk-next-btn" class="sk-nav-btn">›</button>
@@ -226,7 +230,7 @@
             <!-- Speisekarte JS -->
             <script>
             (function() {
-                const TOTAL = 4;
+                const TOTAL = 6;
                 let current = 0;
                 const pages = document.querySelectorAll('.sk-page');
                 const tocLinks = document.querySelectorAll('#speisekarte-toc-list a');
