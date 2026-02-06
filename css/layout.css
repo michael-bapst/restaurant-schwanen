@@ -173,6 +173,57 @@ body.has-sidebar .l-m::before {
     z-index: 0;
 }
 
+/* ===== LAPTOP ANPASSUNGEN ===== */
+@media (min-width: 901px) and (max-width: 1400px) {
+    body.has-sidebar .l-m::before {
+        width: 550px;
+        height: 370px;
+        margin-left: 160px;
+    }
+}
+
+@media (min-width: 901px) and (max-height: 800px) {
+    body.has-sidebar .l-m::before {
+        width: 450px;
+        height: 300px;
+        margin-left: 160px;
+    }
+    
+    /* Sidebar kompakter auf kleinen Höhen */
+    .sidebar-logo {
+        padding: 30px 25px 25px 25px;
+    }
+    
+    .sidebar-logo img {
+        max-width: 200px;
+    }
+    
+    .sidebar-menu {
+        padding: 18px 0;
+    }
+    
+    .sidebar-nav .nav-menu a {
+        padding: 10px 30px;
+        font-size: 1.05rem;
+    }
+    
+    .sidebar-section {
+        padding: 18px 30px;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .sidebar-section strong {
+        font-size: 0.7rem;
+        margin-bottom: 6px;
+    }
+    
+    .sidebar-footer {
+        padding: 18px 30px;
+        font-size: 0.85rem;
+    }
+}
+
 /* ---- VERSTECKE ALTE NAVIGATION ---- */
 body.has-sidebar #menu,
 body.has-sidebar #menu-block,
