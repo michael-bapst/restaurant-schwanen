@@ -97,11 +97,23 @@
                 <div class="hero-content">
                     <h1>Willkommen im Schwanen</h1>
                     <p class="hero-subtitle">Eifach Guet</p>
-                    <p class="hero-text">
-                        Geniessen Sie bei uns eine herzliche Atmosphäre, 
-                        traditionelle Schweizer Küche und unvergessliche Momente 
-                        mit Familie und Freunden.
-                    </p>
+                    <div class="hero-text-block">
+                        <p>
+                            Gutes Essen, gute Gesellschaft, gute Stimmung – mehr braucht es nicht. 
+                            Im Herzen von Rümligen servieren wir Ihnen traditionelle Gerichte 
+                            mit frischen Zutaten und viel Liebe zum Detail. Kommen Sie vorbei, 
+                            nehmen Sie Platz und fühlen Sie sich wie daheim.
+                        </p>
+                        <p>
+                            Haben Sie besondere Wünsche oder planen Sie einen Anlass? 
+                            Ob Geburtstag, Familienfest oder Firmenanlass – sprechen Sie uns an. 
+                            Gemeinsam finden wir die passende Lösung für Ihren Abend.
+                        </p>
+                        <p class="hero-signature">
+                            Wir freuen uns auf Sie!<br>
+                            <span>Petra Burri & Team</span>
+                        </p>
+                    </div>
                     <a href="menu.html" class="hero-button">Unsere Speisekarte</a>
                 </div>
             </section>
@@ -127,12 +139,14 @@
                 
                 .hero-content h1 {
                     font-family: 'Georgia', 'Times New Roman', serif;
-                    font-size: 4.5rem;
+                    font-size: 3.5rem;
                     font-weight: 400;
-                    color: #5a5243;
+                    font-style: italic;
+                    color: #7d7259;
                     margin: 0 0 20px 0;
-                    letter-spacing: 3px;
+                    letter-spacing: 2px;
                     line-height: 1.1;
+                    white-space: nowrap;
                 }
                 
                 .hero-subtitle {
@@ -144,14 +158,36 @@
                     letter-spacing: 4px;
                 }
                 
-                .hero-text {
-                    font-size: 1.4rem;
-                    line-height: 2;
-                    color: #666;
-                    margin: 0 0 60px 0;
-                    max-width: 600px;
-                    margin-left: auto;
-                    margin-right: auto;
+                .hero-text-block {
+                    max-width: 650px;
+                    margin: 0 auto 50px auto;
+                }
+                
+                .hero-text-block p {
+                    font-family: 'Georgia', serif;
+                    font-size: 1.15rem;
+                    line-height: 1.9;
+                    color: #555;
+                    margin: 0 0 25px 0;
+                    text-align: center;
+                }
+                
+                .hero-text-block p:last-of-type:not(.hero-signature) {
+                    margin-bottom: 30px;
+                }
+                
+                .hero-signature {
+                    font-style: italic;
+                    color: #7d7259 !important;
+                    margin-top: 35px !important;
+                    margin-bottom: 0 !important;
+                }
+                
+                .hero-signature span {
+                    display: block;
+                    margin-top: 5px;
+                    font-weight: 600;
+                    letter-spacing: 1px;
                 }
                 
                 .hero-button {
@@ -180,12 +216,11 @@
                     }
                     
                     .hero-content {
-                        padding: 40px 25px;
+                        padding: 40px 25px 100px 25px;
                     }
                     
                     .hero-content h1 {
-                        font-size: 2.5rem;
-                        letter-spacing: 1px;
+                        font-size: 1.6rem;
                     }
                     
                     .hero-subtitle {
@@ -194,10 +229,13 @@
                         letter-spacing: 2px;
                     }
                     
-                    .hero-text {
-                        font-size: 1.1rem;
-                        line-height: 1.8;
+                    .hero-text-block {
                         margin-bottom: 40px;
+                    }
+                    
+                    .hero-text-block p {
+                        font-size: 1.05rem;
+                        line-height: 1.8;
                     }
                     
                     .hero-button {
@@ -208,14 +246,14 @@
                 
                 @media (max-width: 480px) {
                     .hero-content h1 {
-                        font-size: 2rem;
+                        font-size: 1.4rem;
                     }
                     
                     .hero-subtitle {
                         font-size: 1.1rem;
                     }
                     
-                    .hero-text {
+                    .hero-text-block p {
                         font-size: 1rem;
                     }
                     
