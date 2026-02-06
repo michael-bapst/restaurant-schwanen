@@ -1,0 +1,537 @@
+/* ===========================================
+   LAYOUT CSS - Restaurant Schwanen
+   Sidebar + Content (kein Header, kein Footer)
+   =========================================== */
+
+/* ---- RESET & BASIS ---- */
+html, body.has-sidebar {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* ---- GRID LAYOUT ---- */
+body.has-sidebar > .wnd-page {
+    display: contents;
+}
+
+body.has-sidebar > .wnd-page > .l-w {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "sidebar main";
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ---- VERSTECKE HEADER & FOOTER ---- */
+body.has-sidebar .l-h,
+body.has-sidebar header.l-h,
+body.has-sidebar .l-f,
+body.has-sidebar footer.l-f,
+body.has-sidebar .l-w > .l-bg {
+    display: none !important;
+}
+
+/* ---- SIDEBAR ---- */
+.sidebar-nav {
+    grid-area: sidebar;
+    background: url('../images/HinterGrund-Schwanen.jpeg') center/cover;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+/* Logo - oben */
+.sidebar-logo {
+    padding: 50px 30px 40px 30px;
+}
+
+.sidebar-logo img {
+    max-width: 260px;
+    height: auto;
+}
+
+/* Navigation - zentriert */
+.sidebar-menu {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 25px 0;
+    margin-top: auto;
+}
+
+.sidebar-nav .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-nav .nav-menu li {
+    margin: 0;
+}
+
+.sidebar-nav .nav-menu a {
+    display: block;
+    padding: 14px 35px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+}
+
+.sidebar-nav .nav-menu a:hover,
+.sidebar-nav .nav-menu li.active a {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Info-Bereich */
+.sidebar-info {
+    width: 100%;
+    padding: 0;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-top: auto;
+}
+
+.sidebar-section {
+    padding: 25px 35px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.sidebar-section strong {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    opacity: 0.85;
+    font-weight: 600;
+}
+
+.sidebar-section a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar-section a:hover {
+    text-decoration: underline;
+}
+
+/* Footer-Links - ganz unten */
+.sidebar-footer {
+    width: 100%;
+    padding: 25px 35px;
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.sidebar-footer a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+.sidebar-footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.sidebar-footer span {
+    margin: 0 12px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ---- MAIN CONTENT ---- */
+body.has-sidebar .l-m,
+body.has-sidebar main.l-m {
+    grid-area: main;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #ffffff;
+    position: relative;
+}
+
+/* ---- LOGO HINTERGRUND (für alle Seiten) ---- */
+body.has-sidebar .l-m::before {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 540px;
+    margin-left: 160px;
+    background: url('../images/Logo-transparent.gif') center/contain no-repeat;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ---- VERSTECKE ALTE NAVIGATION ---- */
+body.has-sidebar #menu,
+body.has-sidebar #menu-block,
+body.has-sidebar #menu-slider,
+body.has-sidebar #menu-mobile {
+    display: none !important;
+}
+
+/* ---- SCROLLBAR ---- */
+.sidebar-nav::-webkit-scrollbar,
+body.has-sidebar .l-m::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+body.has-sidebar .l-m::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+body.has-sidebar .l-m::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+/* ---- CONTENT STYLES (einheitlich für alle Seiten) ---- */
+.page-content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    box-sizing: border-box;
+}
+
+.page-title {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #7d7259;
+    margin: 0 0 15px 0;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.page-subtitle {
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #999;
+    margin: 0 0 40px 0;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* ===========================================
+   MOBILE LAYOUT (unter 900px)
+   =========================================== */
+
+/* ---- HAMBURGER BUTTON ---- */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    width: 50px;
+    height: 50px;
+    background: rgba(125, 114, 89, 0.95);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s;
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(90, 82, 67, 0.95);
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    margin: 5px 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Hamburger zu X Animation */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ---- OVERLAY ---- */
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+}
+
+/* ---- MOBILE MEDIA QUERY ---- */
+@media (max-width: 900px) {
+    
+    /* Hamburger sichtbar */
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .mobile-overlay {
+        display: block;
+        pointer-events: none;
+    }
+    
+    .mobile-overlay.active {
+        pointer-events: auto;
+    }
+    
+    /* Body & Grid anpassen */
+    html, body.has-sidebar {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    
+    body.has-sidebar > .wnd-page > .l-w {
+        display: block;
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+    
+    /* Sidebar als Overlay */
+    .sidebar-nav {
+        position: fixed;
+        top: 0;
+        left: -320px;
+        width: 320px;
+        height: 100vh;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        overflow-y: auto;
+    }
+    
+    .sidebar-nav.active {
+        left: 0;
+    }
+    
+    /* Main Content nimmt volle Breite */
+    body.has-sidebar .l-m,
+    body.has-sidebar main.l-m {
+        width: 100%;
+        min-height: 100vh;
+        padding-top: 80px;
+    }
+    
+    /* Logo-Hintergrund anpassen für mobile */
+    body.has-sidebar .l-m::before {
+        width: 400px;
+        height: 270px;
+        margin-left: 0;
+        opacity: 0.05;
+    }
+    
+    /* Hero Content anpassen */
+    .hero-content {
+        padding: 40px 25px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+    }
+    
+    .hero-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 40px;
+    }
+    
+    .hero-button {
+        padding: 16px 40px;
+        font-size: 1rem;
+    }
+    
+    /* Page Content anpassen */
+    .page-content {
+        padding: 40px 25px;
+        min-height: calc(100vh - 80px);
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* ---- MOBILE BOTTOM NAVIGATION ---- */
+.mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 54px;
+    background: url('../images/HinterGrund-Schwanen.jpeg') center/cover;
+    z-index: 998;
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.12);
+}
+
+.mobile-bottom-nav ul {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mobile-bottom-nav li {
+    flex: 1;
+    height: 100%;
+}
+
+.mobile-bottom-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    border-top: 2px solid transparent;
+}
+
+.mobile-bottom-nav a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.mobile-bottom-nav a.active {
+    color: #fff;
+    border-top-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 900px) {
+    .mobile-bottom-nav {
+        display: block;
+    }
+    
+    /* Platz für Bottom Nav */
+    body.has-sidebar .l-m,
+    body.has-sidebar main.l-m {
+        padding-bottom: 60px;
+    }
+}
+
+/* ---- NOCH KLEINERE SCREENS ---- */
+@media (max-width: 480px) {
+    
+    .mobile-menu-toggle {
+        top: 15px;
+        left: 15px;
+        width: 45px;
+        height: 45px;
+        padding: 10px;
+    }
+    
+    .mobile-menu-toggle span {
+        height: 2px;
+        margin: 4px 0;
+    }
+    
+    .sidebar-nav {
+        width: 280px;
+        left: -280px;
+    }
+    
+    .sidebar-logo {
+        padding: 40px 20px 30px 20px;
+    }
+    
+    .sidebar-logo img {
+        max-width: 200px;
+    }
+    
+    .sidebar-nav .nav-menu a {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    
+    .sidebar-section {
+        padding: 20px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .sidebar-footer {
+        padding: 20px 25px;
+        font-size: 0.85rem;
+    }
+    
+    body.has-sidebar .l-m::before {
+        width: 280px;
+        height: 190px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-text {
+        font-size: 1rem;
+    }
+}
